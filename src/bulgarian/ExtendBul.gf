@@ -317,5 +317,7 @@ lin AnaphPron np =
         <GPl,        _> => they_Pron
       } ;
 
+lin TPastSimple = {s = []} ** {t = VPastSimple} ;  --# notpresent
+
 }
 

@@ -278,6 +278,8 @@ incomplete concrete ExtendRomanceFunctor of Extend =
     UttDatIP ip = UttAccIP (lin IP ip) ; -- whom (dative) ; DEFAULT who
     UttVPShort = UttVP ;
 
+    TPastSimple = {s = []} ** {t = RPasse} ;   --# notpresent
+
   oper
     quoted : Str -> Str = \s -> "\"" ++ s ++ "\"" ; ---- TODO bind ; move to Prelude?
 
@@ -302,7 +304,7 @@ incomplete concrete ExtendRomanceFunctor of Extend =
       vps ** {
         s = auxvp.s ;
         agr = auxvp.agr ;
-        comp  = \\a => vps.comp ! a ++ (let agr = complAgr a in vps.s.s ! VPart agr.g agr.n) ++ agent ;
+        comp  = \\a => (let agr = complAgr a in vps.s.s ! VPart agr.g agr.n) ++ vps.comp ! a ++ agent ;
       } ;
 
 } ;
