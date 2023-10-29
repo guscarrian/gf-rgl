@@ -59,6 +59,43 @@ lin ApposNP np1 np2 = np1 ** {    -- guessed by KA
                               } ;
     } ;
 
-lin CompoundN a b = lin N {s = \\n => b.s ! n ++ a.s ! Sg ; g = b.g} ; -- connessione internet = internet connection
+lin CompoundN a b = lin N {
+      s = \\n => b.s ! n ++
+                 case b.relType of {
+                   NRelPrep p => prepCase (CPrep p) ;  -- tasa de suicidio
+                   NRelNoPrep => []                    -- connessione internet = internet connection
+                 } ++
+                 a.s ! Sg ;
+      g = b.g ;
+      relType = b.relType
+      } ;
+
+lin UseDAP = \dap ->
+      let
+        g = Masc ;
+        n = dap.n
+      in heavyNPpol dap.isNeg {
+        s = dap.spn ;
+        a = agrP3 g n ;
+        hasClit = False
+        } ;
+    UseDAPMasc = \dap ->
+      let
+        g = Masc ;
+        n = dap.n
+      in heavyNPpol dap.isNeg {
+        s = dap.sp ! g ;
+        a = agrP3 g n ;
+        hasClit = False
+        } ;
+    UseDAPFem dap =
+      let
+        g = Fem ;
+        n = dap.n
+      in heavyNPpol dap.isNeg {
+           s = dap.sp ! g ;
+           a = agrP3 g n ;
+           hasClit = False
+           } ;
 
 }

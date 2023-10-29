@@ -67,12 +67,14 @@ incomplete concrete CatRomance of Cat = CommonX - [SC,Pol,MU]
       n : Number ;
       s2 : Str ;            -- -ci
       sp : Gender => Case => Str ;   -- substantival: mien, mienne
+      spn: Case => Str ;
       isNeg : Bool -- negative element, e.g. aucun
       } ;
     Quant = {
       s  : Bool => Number => Gender => Case => Str ;
       s2 : Str ;
       sp : Number => Gender => Case => Str ;
+      spn: Case => Str ;  -- neutral Spa: esto, eso, Por: isto, isso
       isNeg : Bool -- negative element, e.g. aucun
       } ;
     Predet  = {
@@ -108,9 +110,9 @@ incomplete concrete CatRomance of Cat = CommonX - [SC,Pol,MU]
     A  = {s : AForm => Str ; compar : ComparAgr => Str ; isPre : Bool ; copTyp : CopulaType ; isDeg : Bool} ;
     A2 = {s : AForm => Str ; compar : ComparAgr => Str ; c2 : Compl ; copTyp : CopulaType ; isDeg : Bool} ;
 
-    N  = Noun ;
-    N2 = Noun  ** {c2 : Compl} ;
-    N3 = Noun  ** {c2,c3 : Compl} ;
+    N  = Noun  ** {relType : NRelType};
+    N2 = Noun  ** {relType : NRelType; c2 : Compl} ;
+    N3 = Noun  ** {relType : NRelType; c2,c3 : Compl} ;
     GN, PN = {s : Str ; g : Gender} ;
     SN = {s : Gender => Str ; pl : Str} ;
     LN = {s  : Str;
