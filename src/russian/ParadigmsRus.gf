@@ -507,7 +507,21 @@ oper
                      g = nf.g ;
                      n = n
                    } ;
+    mkLN : A -> LN -> LN
+      = \a, ln -> ln ** {
+                     s = \\cas => (adjFormsAdjective a).s ! (gennum ln.g ln.n) ! ln.anim ! cas ++ ln.s ! cas
+                  } ;
   } ;
+
+  invarLN : Str -> Gender -> Number -> LN
+      = \s, g, n -> 
+            lin LN {
+              s = \\c => s ;
+              anim = Inanimate ;
+              c = mkPrep v_prep_mod Loc ;
+              g = g ;
+              n = n
+            } ;
 
 ---------------------
 -- Adjectives
